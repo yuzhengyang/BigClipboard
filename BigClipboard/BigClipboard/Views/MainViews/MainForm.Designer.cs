@@ -32,37 +32,48 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PBImage = new System.Windows.Forms.PictureBox();
             this.DGVList = new System.Windows.Forms.DataGridView();
+            this.COLTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COLContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COLId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RTBText = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TSSLVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.MSMain = new System.Windows.Forms.MenuStrip();
+            this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PNMain = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.TCData = new System.Windows.Forms.TabControl();
             this.TPText = new System.Windows.Forms.TabPage();
             this.TPImage = new System.Windows.Forms.TabPage();
-            this.COLTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.COLContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.COLId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.TPTable = new System.Windows.Forms.TabPage();
+            this.DGVData = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.BTSearch = new System.Windows.Forms.Button();
+            this.TBSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PBImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.MSMain.SuspendLayout();
             this.PNMain.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.TCData.SuspendLayout();
             this.TPText.SuspendLayout();
             this.TPImage.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.TPTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVData)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // PBImage
             // 
+            this.PBImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PBImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PBImage.Location = new System.Drawing.Point(3, 3);
             this.PBImage.Name = "PBImage";
@@ -97,13 +108,39 @@
             this.DGVList.RowHeadersVisible = false;
             this.DGVList.RowTemplate.Height = 23;
             this.DGVList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVList.Size = new System.Drawing.Size(283, 396);
+            this.DGVList.Size = new System.Drawing.Size(283, 361);
             this.DGVList.TabIndex = 2;
             this.DGVList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVList_CellClick);
             this.DGVList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGVList_KeyDown);
             // 
+            // COLTime
+            // 
+            this.COLTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.DimGray;
+            this.COLTime.DefaultCellStyle = dataGridViewCellStyle3;
+            this.COLTime.HeaderText = "时间";
+            this.COLTime.Name = "COLTime";
+            this.COLTime.ReadOnly = true;
+            this.COLTime.Width = 54;
+            // 
+            // COLContent
+            // 
+            this.COLContent.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.COLContent.HeaderText = "内容";
+            this.COLContent.Name = "COLContent";
+            this.COLContent.ReadOnly = true;
+            // 
+            // COLId
+            // 
+            this.COLId.HeaderText = "Id";
+            this.COLId.Name = "COLId";
+            this.COLId.ReadOnly = true;
+            this.COLId.Visible = false;
+            // 
             // RTBText
             // 
+            this.RTBText.BackColor = System.Drawing.Color.White;
             this.RTBText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RTBText.Location = new System.Drawing.Point(3, 3);
             this.RTBText.Name = "RTBText";
@@ -139,6 +176,29 @@
             this.MSMain.TabIndex = 5;
             this.MSMain.Text = "menuStrip1";
             // 
+            // 编辑ToolStripMenuItem
+            // 
+            this.编辑ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.导出ToolStripMenuItem,
+            this.清空ToolStripMenuItem});
+            this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.编辑ToolStripMenuItem.Text = "编辑";
+            // 
+            // 导出ToolStripMenuItem
+            // 
+            this.导出ToolStripMenuItem.Name = "导出ToolStripMenuItem";
+            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.导出ToolStripMenuItem.Text = "导出";
+            this.导出ToolStripMenuItem.Click += new System.EventHandler(this.导出ToolStripMenuItem_Click);
+            // 
+            // 清空ToolStripMenuItem
+            // 
+            this.清空ToolStripMenuItem.Name = "清空ToolStripMenuItem";
+            this.清空ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.清空ToolStripMenuItem.Text = "清空";
+            this.清空ToolStripMenuItem.Click += new System.EventHandler(this.清空ToolStripMenuItem_Click);
+            // 
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
@@ -156,15 +216,6 @@
             this.PNMain.Size = new System.Drawing.Size(725, 416);
             this.PNMain.TabIndex = 6;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.DGVList);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(10, 10);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(283, 396);
-            this.panel2.TabIndex = 0;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.TCData);
@@ -178,6 +229,7 @@
             // 
             this.TCData.Controls.Add(this.TPText);
             this.TCData.Controls.Add(this.TPImage);
+            this.TCData.Controls.Add(this.TPTable);
             this.TCData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TCData.Location = new System.Drawing.Point(0, 0);
             this.TCData.Name = "TCData";
@@ -207,56 +259,81 @@
             this.TPImage.Text = "图片";
             this.TPImage.UseVisualStyleBackColor = true;
             // 
-            // COLTime
+            // panel2
             // 
-            this.COLTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.DimGray;
-            this.COLTime.DefaultCellStyle = dataGridViewCellStyle3;
-            this.COLTime.HeaderText = "时间";
-            this.COLTime.Name = "COLTime";
-            this.COLTime.ReadOnly = true;
-            this.COLTime.Width = 54;
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(10, 10);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(283, 396);
+            this.panel2.TabIndex = 0;
             // 
-            // COLContent
+            // TPTable
             // 
-            this.COLContent.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.COLContent.HeaderText = "内容";
-            this.COLContent.Name = "COLContent";
-            this.COLContent.ReadOnly = true;
+            this.TPTable.Controls.Add(this.DGVData);
+            this.TPTable.Location = new System.Drawing.Point(4, 22);
+            this.TPTable.Name = "TPTable";
+            this.TPTable.Padding = new System.Windows.Forms.Padding(3);
+            this.TPTable.Size = new System.Drawing.Size(414, 370);
+            this.TPTable.TabIndex = 2;
+            this.TPTable.Text = "表格";
+            this.TPTable.UseVisualStyleBackColor = true;
             // 
-            // COLId
+            // DGVData
             // 
-            this.COLId.HeaderText = "Id";
-            this.COLId.Name = "COLId";
-            this.COLId.ReadOnly = true;
-            this.COLId.Visible = false;
+            this.DGVData.AllowUserToAddRows = false;
+            this.DGVData.AllowUserToDeleteRows = false;
+            this.DGVData.BackgroundColor = System.Drawing.Color.White;
+            this.DGVData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVData.Location = new System.Drawing.Point(3, 3);
+            this.DGVData.Name = "DGVData";
+            this.DGVData.ReadOnly = true;
+            this.DGVData.RowHeadersVisible = false;
+            this.DGVData.RowTemplate.Height = 23;
+            this.DGVData.Size = new System.Drawing.Size(408, 364);
+            this.DGVData.TabIndex = 0;
             // 
-            // 编辑ToolStripMenuItem
+            // panel1
             // 
-            this.编辑ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.导出ToolStripMenuItem,
-            this.清空ToolStripMenuItem});
-            this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
-            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.编辑ToolStripMenuItem.Text = "编辑";
+            this.panel1.Controls.Add(this.TBSearch);
+            this.panel1.Controls.Add(this.BTSearch);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(283, 35);
+            this.panel1.TabIndex = 3;
             // 
-            // 清空ToolStripMenuItem
+            // panel4
             // 
-            this.清空ToolStripMenuItem.Name = "清空ToolStripMenuItem";
-            this.清空ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.清空ToolStripMenuItem.Text = "清空";
-            this.清空ToolStripMenuItem.Click += new System.EventHandler(this.清空ToolStripMenuItem_Click);
+            this.panel4.Controls.Add(this.DGVList);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 35);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(283, 361);
+            this.panel4.TabIndex = 4;
             // 
-            // 导出ToolStripMenuItem
+            // BTSearch
             // 
-            this.导出ToolStripMenuItem.Name = "导出ToolStripMenuItem";
-            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.导出ToolStripMenuItem.Text = "导出";
-            this.导出ToolStripMenuItem.Click += new System.EventHandler(this.导出ToolStripMenuItem_Click);
+            this.BTSearch.Location = new System.Drawing.Point(202, 5);
+            this.BTSearch.Name = "BTSearch";
+            this.BTSearch.Size = new System.Drawing.Size(75, 23);
+            this.BTSearch.TabIndex = 0;
+            this.BTSearch.Text = "搜索";
+            this.BTSearch.UseVisualStyleBackColor = true;
+            this.BTSearch.Click += new System.EventHandler(this.BTSearch_Click);
+            // 
+            // TBSearch
+            // 
+            this.TBSearch.Location = new System.Drawing.Point(4, 6);
+            this.TBSearch.Name = "TBSearch";
+            this.TBSearch.Size = new System.Drawing.Size(192, 21);
+            this.TBSearch.TabIndex = 1;
             // 
             // MainForm
             // 
+            this.AcceptButton = this.BTSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 463);
@@ -274,11 +351,16 @@
             this.MSMain.ResumeLayout(false);
             this.MSMain.PerformLayout();
             this.PNMain.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.TCData.ResumeLayout(false);
             this.TPText.ResumeLayout(false);
             this.TPImage.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.TPTable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVData)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,5 +386,11 @@
         private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清空ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 导出ToolStripMenuItem;
+        private System.Windows.Forms.TabPage TPTable;
+        private System.Windows.Forms.DataGridView DGVData;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox TBSearch;
+        private System.Windows.Forms.Button BTSearch;
     }
 }

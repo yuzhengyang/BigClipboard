@@ -1,4 +1,6 @@
-﻿using Azylee.Core.WindowsUtils.HookUtils;
+﻿using Azylee.Core.DataUtils.CollectionUtils;
+using Azylee.Core.DataUtils.StringUtils;
+using Azylee.Core.WindowsUtils.HookUtils;
 using BigClipboard.Commons;
 using BigClipboard.Models;
 using BigClipboard.Modules.ClipboardDataModule;
@@ -28,6 +30,14 @@ namespace BigClipboard.Views.MainViews
             mNextClipBoardViewerHWnd = SetClipboardViewer(this.Handle);
         }
 
+        #region 按钮操作
+
+        private void BTSearch_Click(object sender, EventArgs e)
+        {
+            ClipboardDataMan.Search(TBSearch.Text);
+        }
+        #endregion
+
         #region 菜单操作
         private void 导出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -46,19 +56,7 @@ namespace BigClipboard.Views.MainViews
             {
                 Invoke(new Action(() =>
                 {
-                    switch (data.Type)
-                    {
-                        case ClipboardDataType.Text:
-                            {
-                                DGVList.Rows.Add(data.CreateTime, data.Data.ToString().Trim(), data.Id);
-                                break;
-                            }
-                        case ClipboardDataType.Image:
-                            {
-                                DGVList.Rows.Add(data.CreateTime, "[图片内容]", data.Id);
-                                break;
-                            }
-                    }
+                    DGVList.Rows.Insert(0, data.CreateTime, data.Text?.Trim(), data.Id);
                 }));
             }
             catch { }
@@ -102,21 +100,39 @@ namespace BigClipboard.Views.MainViews
                 ClipboardData data = ClipboardDataMan.Get(id);
                 if (data != null)
                 {
-                    switch (data.Type)
+                    RTBText.Clear();
+                    PBImage.Image = null;
+                    DGVData.Rows.Clear();
+                    DGVData.Columns.Clear();
+
+                    if (data.Text != null)
                     {
-                        case ClipboardDataType.Text:
+                        //TCData.SelectTab("TPText");
+                        RTBText.Text = data.Text;
+
+                        string[] rows = data.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                        foreach (var _r in rows)
+                        {
+                            string[] _d = _r.Split('\t');
+                            if (ListTool.HasElements(_d))
                             {
-                                RTBText.Text = data.Data.ToString();
-                                TCData.SelectTab("TPText");
-                                break;
+                                if (DGVData.Columns.Count < _d.Length)
+                                {
+                                    for (int i = DGVData.Columns.Count; i < _d.Length; i++)
+                                    {
+                                        DGVData.Columns.Add($"DGVData_COL{i}", $"{i + 1}");
+                                    }
+                                }
+                                DGVData.Rows.Add(_d);
                             }
-                        case ClipboardDataType.Image:
-                            {
-                                PBImage.Image = (Image)data.Data;
-                                PBImage.Update();
-                                TCData.SelectTab("TPImage");
-                                break;
-                            }
+                        }
+                    }
+
+                    if (data.Image != null)
+                    {
+                        //TCData.SelectTab("TPImage");
+                        PBImage.Image = (Image)data.Image;
+                        PBImage.Update();
                     }
                 }
             }
@@ -167,10 +183,9 @@ namespace BigClipboard.Views.MainViews
             }
             base.WndProc(ref m);
         }
-        #endregion
 
+        #endregion 
         #endregion
-
 
     }
 }
