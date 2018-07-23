@@ -6,3 +6,6 @@
 3. 根据关键词查询历史记录；
 
 ### 截图
+![image](https://github.com/yuzhengyang/BigClipboard/blob/master/Documents/ScreenShot/1532343484.png?raw=true)
+![image](https://github.com/yuzhengyang/BigClipboard/blob/master/Documents/ScreenShot/1532343495.png?raw=true)
+![image](https://github.com/yuzhengyang/BigClipboard/blob/master/Documents/ScreenShot/1532343464.png?raw=true)
