@@ -1,4 +1,5 @@
 ﻿using BigClipboard.Commons;
+using BigClipboard.Modules.GCModule;
 using BigClipboard.Views.MainViews;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace BigClipboard
             Application.SetCompatibleTextRenderingDefault(false);
 
             R.MainUI = new MainForm();
+            AutoGC.Start();//开启自动GC
+
             Application.Run(R.MainUI);
         }
     }

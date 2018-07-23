@@ -1,14 +1,21 @@
-﻿using Azylee.Core.DataUtils.CollectionUtils;
+﻿using Azylee.Core.AppUtils;
+using Azylee.Core.DataUtils.CollectionUtils;
+using Azylee.Core.DataUtils.SerializeUtils;
 using Azylee.Core.DataUtils.StringUtils;
+using Azylee.Core.DataUtils.UnitConvertUtils;
 using Azylee.Core.WindowsUtils.HookUtils;
 using BigClipboard.Commons;
 using BigClipboard.Models;
 using BigClipboard.Modules.ClipboardDataModule;
+using BigClipboard.Modules.GCModule;
+using BigClipboard.Views.HelpViews;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -18,7 +25,6 @@ namespace BigClipboard.Views.MainViews
 {
     public partial class MainForm : Form
     {
-
         public MainForm()
         {
             InitializeComponent();
@@ -28,6 +34,7 @@ namespace BigClipboard.Views.MainViews
         private void MainForm_Load(object sender, EventArgs e)
         {
             mNextClipBoardViewerHWnd = SetClipboardViewer(this.Handle);
+            DGVList_Select(0);
         }
 
         #region 按钮操作
@@ -46,6 +53,23 @@ namespace BigClipboard.Views.MainViews
         private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClipboardDataMan.Clear();
+        }
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            R.FormMan.GetUnique<AboutForm>().Show();
+            R.FormMan.GetUnique<AboutForm>().Activate();
+        }
+
+        private void 报告问题ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = string.Format("mailto:{0}?subject={1}", R.EmailAddress, "BigClipboard : 问题");
+            Process.Start(message);//调用进程启动邮件
+        }
+
+        private void 提供建议ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = string.Format("mailto:{0}?subject={1}", R.EmailAddress, "BigClipboard : 建议");
+            Process.Start(message);//调用进程启动邮件
         }
         #endregion
 
@@ -100,16 +124,36 @@ namespace BigClipboard.Views.MainViews
                 ClipboardData data = ClipboardDataMan.Get(id);
                 if (data != null)
                 {
-                    RTBText.Clear();
+                    TBText.Clear();
                     PBImage.Image = null;
                     DGVData.Rows.Clear();
                     DGVData.Columns.Clear();
-
+                    //显示信息大小
+                    TSSLDataSize.Text = ByteConvertTool.Fmt(data.Size);
+                    //设置富文本
+                    //if (data.RichText != null)
+                    //{
+                    //    try
+                    //    {
+                    //        using (Stream s = new MemoryStream())
+                    //        {
+                    //            s.Position = 0;
+                    //            s.Write(data.RichText, 0, data.RichText.Length);
+                    //            s.Position = 0;
+                    //            RTBRich.LoadFile(s, RichTextBoxStreamType.RichText);
+                    //        }
+                    //    }
+                    //    catch (Exception e) { }
+                    //}
+                    //设置纯文本
                     if (data.Text != null)
                     {
                         //TCData.SelectTab("TPText");
-                        RTBText.Text = data.Text;
-
+                        TBText.AppendText(data.Text);
+                    }
+                    //设置表格
+                    if (data.Text != null)
+                    {
                         string[] rows = data.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
                         foreach (var _r in rows)
                         {
@@ -127,15 +171,26 @@ namespace BigClipboard.Views.MainViews
                             }
                         }
                     }
-
+                    //设置图片
                     if (data.Image != null)
                     {
                         //TCData.SelectTab("TPImage");
-                        PBImage.Image = (Image)data.Image;
+                        PBImage.Image = data.Image;
                         PBImage.Update();
                     }
                 }
             }
+        }
+        #endregion
+
+        #region 定时器
+        private void TMMain_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                TSSLRamInfo.Text = ByteConvertTool.Fmt(R.AppRam);
+            }
+            catch { }
         }
         #endregion
 
@@ -183,9 +238,10 @@ namespace BigClipboard.Views.MainViews
             }
             base.WndProc(ref m);
         }
-
-        #endregion 
         #endregion
+
+        #endregion
+
 
     }
 }
