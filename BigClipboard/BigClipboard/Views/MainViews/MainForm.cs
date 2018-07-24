@@ -264,19 +264,20 @@ namespace BigClipboard.Views.MainViews
         /// </summary>
         private void HideForm()
         {
-            Opacity = 0;
-            ShowInTaskbar = false;
-            Hide();
+            //Opacity = 0;
+            //ShowInTaskbar = false;//使用ShowInTaskbar-false，将导致无法接受剪贴板事件
+            WindowState = FormWindowState.Minimized;
+            //Hide();
         }
         /// <summary>
         /// 显示窗口
         /// </summary>
         private void ShowForm()
         {
-            Opacity = 100;
-            ShowInTaskbar = true;
+            //Opacity = 100;
+            //ShowInTaskbar = true;//使用ShowInTaskbar-false，将导致无法接受剪贴板事件
             if (WindowState == FormWindowState.Minimized) WindowState = FormWindowState.Normal;
-            Show();
+            //Show();
             Activate();
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
