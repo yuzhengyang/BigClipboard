@@ -35,6 +35,8 @@ namespace BigClipboard.Views.MainViews
         {
             mNextClipBoardViewerHWnd = SetClipboardViewer(this.Handle);
             DGVList_Select(0);
+
+            NIMain.Visible = true;
         }
 
         #region 按钮操作
@@ -70,6 +72,21 @@ namespace BigClipboard.Views.MainViews
         {
             string message = string.Format("mailto:{0}?subject={1}", R.EmailAddress, "BigClipboard : 建议");
             Process.Start(message);//调用进程启动邮件
+        }
+        #endregion
+
+        #region 右下角图标菜单
+        private void NIMain_DoubleClick(object sender, EventArgs e)
+        {
+            ShowForm();
+        }
+        private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowForm();
+        }
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
         #endregion
 
@@ -239,9 +256,55 @@ namespace BigClipboard.Views.MainViews
             base.WndProc(ref m);
         }
         #endregion
-
         #endregion
 
-
+        #region 窗口的关闭和隐藏
+        /// <summary>
+        /// 隐藏窗口
+        /// </summary>
+        private void HideForm()
+        {
+            Opacity = 0;
+            ShowInTaskbar = false;
+            Hide();
+        }
+        /// <summary>
+        /// 显示窗口
+        /// </summary>
+        private void ShowForm()
+        {
+            Opacity = 100;
+            ShowInTaskbar = true;
+            if (WindowState == FormWindowState.Minimized) WindowState = FormWindowState.Normal;
+            Show();
+            Activate();
+        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            HideForm();
+            switch (e.CloseReason)
+            {
+                case CloseReason.None:
+                    e.Cancel = true;
+                    break;
+                case CloseReason.WindowsShutDown:
+                    break;
+                case CloseReason.MdiFormClosing:
+                    e.Cancel = true;
+                    break;
+                case CloseReason.UserClosing:
+                    e.Cancel = true;
+                    break;
+                case CloseReason.TaskManagerClosing:
+                    e.Cancel = true;
+                    break;
+                case CloseReason.FormOwnerClosing:
+                    e.Cancel = true;
+                    break;
+                case CloseReason.ApplicationExitCall:
+                    break;
+            }
+        }
+        #endregion 
     }
 }

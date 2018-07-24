@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.PBImage = new System.Windows.Forms.PictureBox();
             this.DGVList = new System.Windows.Forms.DataGridView();
             this.COLTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +67,10 @@
             this.TBSearch = new System.Windows.Forms.TextBox();
             this.BTSearch = new System.Windows.Forms.Button();
             this.TMMain = new System.Windows.Forms.Timer(this.components);
+            this.NIMain = new System.Windows.Forms.NotifyIcon(this.components);
+            this.CMSMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.显示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.PBImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVList)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -81,6 +86,7 @@
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.CMSMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // PBImage
@@ -103,14 +109,14 @@
             this.COLTime,
             this.COLContent,
             this.COLId});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVList.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVList.DefaultCellStyle = dataGridViewCellStyle6;
             this.DGVList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVList.Location = new System.Drawing.Point(0, 0);
             this.DGVList.Name = "DGVList";
@@ -126,9 +132,9 @@
             // COLTime
             // 
             this.COLTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.DimGray;
-            this.COLTime.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.DimGray;
+            this.COLTime.DefaultCellStyle = dataGridViewCellStyle5;
             this.COLTime.HeaderText = "时间";
             this.COLTime.Name = "COLTime";
             this.COLTime.ReadOnly = true;
@@ -419,6 +425,36 @@
             this.TMMain.Interval = 1000;
             this.TMMain.Tick += new System.EventHandler(this.TMMain_Tick);
             // 
+            // NIMain
+            // 
+            this.NIMain.ContextMenuStrip = this.CMSMain;
+            this.NIMain.Icon = ((System.Drawing.Icon)(resources.GetObject("NIMain.Icon")));
+            this.NIMain.Text = "剪贴板";
+            this.NIMain.Visible = true;
+            this.NIMain.DoubleClick += new System.EventHandler(this.NIMain_DoubleClick);
+            // 
+            // CMSMain
+            // 
+            this.CMSMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.显示ToolStripMenuItem,
+            this.退出ToolStripMenuItem});
+            this.CMSMain.Name = "CMSMain";
+            this.CMSMain.Size = new System.Drawing.Size(101, 48);
+            // 
+            // 显示ToolStripMenuItem
+            // 
+            this.显示ToolStripMenuItem.Name = "显示ToolStripMenuItem";
+            this.显示ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.显示ToolStripMenuItem.Text = "显示";
+            this.显示ToolStripMenuItem.Click += new System.EventHandler(this.显示ToolStripMenuItem_Click);
+            // 
+            // 退出ToolStripMenuItem
+            // 
+            this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.退出ToolStripMenuItem.Text = "退出";
+            this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.BTSearch;
@@ -428,10 +464,12 @@
             this.Controls.Add(this.PNMain);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.MSMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MSMain;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BigClipboard-大剪贴板工具";
+            this.Text = "剪贴板 - BigClipboard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PBImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVList)).EndInit();
@@ -453,6 +491,7 @@
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.CMSMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,5 +533,9 @@
         private System.Windows.Forms.ToolStripMenuItem 提供建议ToolStripMenuItem;
         private System.Windows.Forms.TextBox TBText;
         private System.Windows.Forms.Panel PNImageContainer;
+        private System.Windows.Forms.NotifyIcon NIMain;
+        private System.Windows.Forms.ContextMenuStrip CMSMain;
+        private System.Windows.Forms.ToolStripMenuItem 显示ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
     }
 }

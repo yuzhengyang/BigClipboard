@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.BTGithub = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -40,6 +41,7 @@
             this.BTGithub.TabIndex = 0;
             this.BTGithub.Text = "Github";
             this.BTGithub.UseVisualStyleBackColor = true;
+            this.BTGithub.Click += new System.EventHandler(this.BTGithub_Click);
             // 
             // label1
             // 
@@ -58,6 +60,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BTGithub);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
