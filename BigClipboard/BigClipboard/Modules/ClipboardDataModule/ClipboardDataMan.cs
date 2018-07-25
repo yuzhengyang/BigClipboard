@@ -25,7 +25,12 @@ namespace BigClipboard.Modules.ClipboardDataModule
             data.CreateTime = DateTime.Now;
 
             //读取纯文本
-            try { if (Clipboard.ContainsText()) data.Text = Clipboard.GetText(); } catch { }
+            try
+            {
+                if (Clipboard.ContainsText()) data.Text = Clipboard.GetText();
+                if (data.Text != null) data.Text = data.Text.Trim();
+            }
+            catch { }
 
             //读取富文本（实在是解决不了内存的占用问题，所以暂时不读取富文本内容了）
             //try

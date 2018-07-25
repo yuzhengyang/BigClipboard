@@ -317,6 +317,7 @@
             // 
             // TBText
             // 
+            this.TBText.BackColor = System.Drawing.Color.White;
             this.TBText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TBText.Location = new System.Drawing.Point(3, 3);
             this.TBText.Multiline = true;
@@ -341,6 +342,7 @@
             // PNImageContainer
             // 
             this.PNImageContainer.AutoScroll = true;
+            this.PNImageContainer.BackColor = System.Drawing.Color.White;
             this.PNImageContainer.Controls.Add(this.PBImage);
             this.PNImageContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PNImageContainer.Location = new System.Drawing.Point(3, 3);
